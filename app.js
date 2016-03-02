@@ -107,7 +107,7 @@
 	
   }
   
-  window.crypt = crypt; // teoorias ei ole vaja
+  //window.crypt = crypt; // teoorias ei ole vaja
 
   window.onload = function(){
     var app = new PassGen();
