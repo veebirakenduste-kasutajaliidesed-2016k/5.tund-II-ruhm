@@ -10,6 +10,9 @@
 	
 	this.passwords = []; //massiiv paroolide jaoks
 	this.password_length = null;
+	
+	//ul kuhu pistame paroole
+	this.container = document.querySelector('#container');
 
 
     //panen rakenduse tööle
@@ -30,9 +33,46 @@
     },
 	generatePasswords: function(){
 		
+		//teeme massiivi tühjaks
+		this.passwords = [];
+		
+		//8 või 16
 		this.password_length = document.querySelector('#pass-length').value;
 		
 		console.log('genereerin ' + this.password_length);
+		
+		//paroolide arv
+		var count = 10;
+		
+		for(var i = 0; i < count; i++){
+			
+			//random index
+			var random_index = Math.round(Math.random() * words[this.password_length].length);
+			
+			//console.log(random_index);
+			var password = words[this.password_length][random_index];
+			this.passwords.push(password);
+			
+		}
+		
+		this.printPasswords();
+		
+	},
+	printPasswords: function(){
+		
+		this.container.innerHTML = '';
+		
+		for(var i = 0; i < this.passwords.length; i++){
+			
+			//tekitan li kus sees on parool
+			var el = document.createElement('li');
+			var text = document.createTextNode(this.passwords[i]);
+			el.appendChild(text);
+			this.container.appendChild(el);
+			
+			
+		}
+		
 		
 	}
 	
