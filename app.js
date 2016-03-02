@@ -51,7 +51,7 @@
 			
 			//console.log(random_index);
 			var password = words[this.password_length][random_index];
-			this.passwords.push(password);
+			this.passwords.push(crypt(password)); // krüpteerin
 			
 		}
 		
@@ -71,6 +71,8 @@
 			this.container.appendChild(el);
 			
 			
+			//this.container.innerHTML += '<li>' +this.passwords[i]+ '</li>';
+			
 		}
 		
 		
@@ -78,6 +80,34 @@
 	
 
   };
+  
+  //HELPER FUNCTIONS
+  var crypt = function(word){
+	
+	var length = word.length;
+	
+	word = word.replace('i','1');
+	word = word.replace('o','0');
+	
+	if(length === 6){
+		//teen pikkusega 8
+		word += Math.round(Math.random()*10);
+		word += Math.round(Math.random()*10);
+		
+	}else if(length === 12){
+		//teen pikkusega 16
+		word += Math.round(Math.random()*10);
+		word += Math.round(Math.random()*10);
+		word += Math.round(Math.random()*10);
+		word += Math.round(Math.random()*10);
+		
+	}
+	
+	return word;
+	
+  }
+  
+  window.crypt = crypt; // teoorias ei ole vaja
 
   window.onload = function(){
     var app = new PassGen();
